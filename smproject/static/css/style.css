@@ -43,6 +43,7 @@ body {
 	width:100px;
 	margin-left:10px;
 	font-weight:700;
+	outline:none;
 }
 #user_form {
 	margin:50px auto;

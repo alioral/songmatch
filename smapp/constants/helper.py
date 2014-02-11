@@ -18,6 +18,9 @@ def get_value_from_dict(key, dictionary):
 
 def log(function_name, message):
 	print str(datetime.now()) + ' [' + function_name + '] ' + message
+	db['log'].insert({'function':function_name, 
+		'log':message, 
+		'created_at': datetime.now()})
 
 def get_user_recent_tracks(name):
 	recent_track_list = list()

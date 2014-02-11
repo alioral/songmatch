@@ -2,12 +2,17 @@ import requests
 
 from collections import defaultdict
 
+from database import Database
+
 from constants.helper import get_user_recent_tracks
 from constants.helper import is_none
 from constants.helper import get_top_tracks
 from constants.helper import get_value_from_dict
 
 from constants.lists import COUNTRY_LIST
+
+
+db = Database()
 
 class User:
 
@@ -17,17 +22,10 @@ class User:
 	def get_recent_tracks(self):
 		if not hasattr(self, 'recent_tracks'):
 			self.recent_tracks = get_user_recent_tracks(self.name)
+			db['user'].insert({'username':self.name, 
+				'recent_tracks': self.recent_tracks})
+
 		return self.recent_tracks
-
-	def get_neighbours(self):
-
-		if not hasattr(self, 'neighbours'):
-			self.neighbours = get_user_neighbours(self.name)
-		return self.neighbours
-
-	def compare_with(self, neighbour):
-		result = compare_users(self.name, neighbour)
-		return result
 
 class Country():
 
