@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<p id="info">SongMatch checks the songs you've listened from Last.fm and by date suggests where you should have been. Fun way to learn where you could have visit.</p>
+<form id="lastfm" action="/find" method="post">
+	{% csrf_token %}
+	<table id="user_form">
+		<tr>
+			<td><input id="username" name="username" type="text" placeholder="Last.fm username"/></td>
+			<td><input id="btn_submit" type="submit" value="SUBMIT"></td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

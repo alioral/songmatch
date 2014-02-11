@@ -1,0 +1,1 @@
+NEIGHBOUR_LIMIT = 10 # Get top N number of neighbours to match

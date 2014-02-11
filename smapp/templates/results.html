@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block script %}
+	<script type="text/javascript">
+	  google.load("visualization", "1", {packages:["corechart"]});
+	  google.setOnLoadCallback(drawChart);
+	  function drawChart() {
+
+	  	var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Country');
+		data.addColumn('date', 'Date');
+		data.addColumn('number', 'Matching Songs');
+
+		var listJSON = JSON.parse("{{data}}".replace(/&quot;/g,'"'));
+		var tempObject;
+		for(var i = 0; i < listJSON.length; i++) {
+			tempObject = listJSON[i];
+			data.addRow([tempObject['country'], new Date(tempObject['date']), 
+				tempObject['match_rate']]);
+		}
+
+	    var options = {
+	      legend: 'none',
+	      fontName: 'Lato',
+	      fontSize:16,
+	      backgroundColor: '#F0F0F0',
+	      colors: ['#900000'],
+	      chartArea: {width:'88%', height:'65%', top:25},
+	      vAxis: {viewWindow:{min:0, max:12}}
+	    };
+
+	    var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+	    chart.draw(data, options);
+	  }
+	</script>
+{% endblock %}
+{% block content %}
+	<h2>Around the world</h2>
+	<div id="chart_div" style="width: 700px; height: 250px;"></div>
+{% endblock %}
