@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
     'smapp/templates/'
 )
 
-API_KEY_LAST_FM = '8ddb03c6a579f3050c0a81da920de325'
+API_KEY_LAST_FM = 'YOUR API KEY HERE'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
